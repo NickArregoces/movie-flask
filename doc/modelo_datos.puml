@@ -15,5 +15,5 @@ Entity Review {
     reting int(1) <<NN>>
 }
 
-Movie ||--o{Revie w
+Movie ||--o{Review
 @enduml
