@@ -12,7 +12,7 @@ class MovieRepository:
         sql = f"""
                 INSERT INTO Movie (code, name, image_url, year)
                 VALUES ('{movie.code}', '{movie.name}', {image}, {movie.year if movie.year != None else 'NULL' });
-               """
+                """
         cursor = execute(sql)
         cursor.close()
         commit()
@@ -22,7 +22,7 @@ class MovieRepository:
                 SELECT code, name, image_url, year
                 FROM Movie
                 WHERE code = '{code}';
-               """
+                """
         cursor = execute(sql)
         result = cursor.fetchone() # ('a1','Matrix','htt...',2000)
         cursor.close()
@@ -41,7 +41,7 @@ class MovieRepository:
                 SELECT code, name, image_url, year
                 FROM Movie
                 ORDER BY name
-              """
+                """
         cursor = execute(sql)
         result = cursor.fetchall() # [('a1','Matrix','htt...',2000),('b2','El resplandor','http....',2005),()]
         cursor.close()
@@ -49,7 +49,7 @@ class MovieRepository:
         response = list()
         for data in result:
             response.append(Movie(
-               code=data[0],
+                code=data[0],
                 name=data[1],
                 image_url=data[2],
                 year=data[3]))
@@ -62,7 +62,7 @@ class ReviewRepository:
         sql = f"""
                 INSERT INTO Review (name, email, description, rating, code)
                 VALUES ('{review.name}', '{review.email}', '{review.description}', {review.rating}, '{review.code}');
-               """
+                """
         cursor = execute(sql)
         cursor.close()
         commit()
@@ -72,7 +72,7 @@ class ReviewRepository:
                 SELECT id, name, email, description, rating, code
                 FROM Review
                 WHERE id = {id};
-               """
+                """
         cursor = execute(sql)
         result = cursor.fetchone() 
         cursor.close()
@@ -87,10 +87,10 @@ class ReviewRepository:
 
     def findByMovieCode(self, movie_code: str) -> list:
         sql = f"""
-               SELECT id, name, email, description, rating, code
+                SELECT id, name, email, description, rating, code
                 FROM Review
                 WHERE code = '{movie_code}';
-              """
+            """
         cursor = execute(sql)
         result = cursor.fetchall() 
         cursor.close()
@@ -116,7 +116,7 @@ class ReviewRepository:
                     rating = {review.rating},
                     code = '{review.code}'
                 WHERE id = {review.id};
-               """
+                """
         cursor = execute(sql)
         cursor.close()
         commit()
@@ -126,7 +126,7 @@ class ReviewRepository:
                 DELETE
                 FROM Review
                 WHERE id = {id};
-               """
+                """
         cursor = execute(sql)
         cursor.close()
         commit()
